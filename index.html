@@ -1,10 +1,352 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katyani Mehra - Software Engineer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom styles for the portfolio */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e2e8f0; /* slate-200 */
+        }
+
+        /* Subtle background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.1), transparent 30%),
+                              radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1), transparent 30%);
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Styling for scroll-triggered animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom card styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+        }
+
+        .skill-badge {
+            transition: all 0.2s ease-in-out;
+        }
+
+        .skill-badge:hover {
+            transform: scale(1.05);
+            background-color: #4f46e5; /* indigo-600 */
+            color: #ffffff;
+        }
+    </style>
 </head>
-<body>
-Hello Katyani!
+<body class="w-full">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-slate-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white tracking-wider">KM</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-slate-300 hover:text-indigo-400 transition-colors">About</a>
+                <a href="#experience" class="text-slate-300 hover:text-indigo-400 transition-colors">Experience</a>
+                <a href="#projects" class="text-slate-300 hover:text-indigo-400 transition-colors">Projects</a>
+                <a href="#contact" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 px-4 rounded-lg transition-colors">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900/90 backdrop-blur-lg">
+             <a href="#about" class="block py-2 px-6 text-slate-300 hover:bg-indigo-500 hover:text-white">About</a>
+             <a href="#experience" class="block py-2 px-6 text-slate-300 hover:bg-indigo-500 hover:text-white">Experience</a>
+             <a href="#projects" class="block py-2 px-6 text-slate-300 hover:bg-indigo-500 hover:text-white">Projects</a>
+             <a href="#contact" class="block py-2 px-6 text-slate-300 hover:bg-indigo-500 hover:text-white">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-32">
+
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-[70vh] flex flex-col justify-center items-center text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4">
+                Katyani Mehra
+            </h1>
+            <p class="text-2xl md:text-3xl text-indigo-400 font-semibold mb-8">
+                Software & Machine Learning Engineer
+            </p>
+            <p class="max-w-3xl text-slate-400 text-lg md:text-xl mb-12">
+                I'm a builder driven to create impactful solutions. My mission is to develop cutting-edge AI and software that solves real-world problems and delivers intuitive user experiences.
+            </p>
+            <div class="flex space-x-6">
+                <a href="mailto:katyani.mehra.dev@gmail.com" class="text-slate-400 hover:text-indigo-400 transition-colors"><i data-lucide="mail" class="w-8 h-8"></i></a>
+                <a href="https://linkedin.com/in/katyani-mehra/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 transition-colors"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-indigo-400 transition-colors"><i data-lucide="github" class="w-8 h-8"></i></a>
+            </div>
+        </section>
+
+        <!-- About & Skills Section -->
+        <section id="about" class="py-24 fade-in-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">About & Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
+                <div class="md:col-span-2">
+                    <img src="https://placehold.co/400x400/1e1b4b/93c5fd?text=Katyani" alt="Katyani Mehra" class="rounded-lg shadow-2xl mx-auto w-full max-w-sm">
+                </div>
+                <div class="md:col-span-3">
+                    <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                        As a software engineer with a deep interest in machine learning, I thrive in fast-paced, innovative environments. I have hands-on experience taking features from concept to deployment, with a strong focus on code quality, system performance, and creating scalable, maintainable solutions. I'm passionate about architecting systems that are not just functional, but also robust and efficient.
+                    </p>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-indigo-400 mb-3">Cloud & DevOps</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">AWS Lambda</span>
+                                <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">AWS S3</span>
+                                <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">AWS Rekognition</span>
+                                <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Terraform</span>
+                                <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Azure DevOps</span>
+                                <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Docker</span>
+                                <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">GCP</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-indigo-400 mb-3">Languages & Frameworks</h3>
+                            <div class="flex flex-wrap gap-2">
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Python</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">PyTorch</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">C#</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">.NET</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Java</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Autoencoders</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">VQ-VAE</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">MediaPipe</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">OpenPose</span>
+                            </div>
+                        </div>
+                        <div>
+                             <h3 class="text-xl font-semibold text-indigo-400 mb-3">Databases</h3>
+                            <div class="flex flex-wrap gap-2">
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Postgres</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">MongoDB</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">MySQL</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">Oracle</span>
+                               <span class="skill-badge bg-slate-800 text-slate-300 py-1 px-3 rounded-md text-sm">DynamoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-24 fade-in-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Experience</h2>
+            <div class="relative max-w-3xl mx-auto">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-slate-700"></div>
+
+                <!-- Experience Items -->
+                <div class="space-y-16">
+                    <!-- RIT - Azure Engineer -->
+                    <div class="relative">
+                        <div class="md:flex items-center md:space-x-8">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="glass-card p-6 rounded-lg">
+                                    <p class="text-sm text-indigo-400 mb-1">Jan 2025 - May 2025</p>
+                                    <h3 class="text-xl font-bold text-white">Azure and M365 Engineer</h3>
+                                    <p class="text-slate-400 font-medium mb-3">Rochester Institute of Technology</p>
+                                    <ul class="list-disc list-inside text-slate-300 space-y-1 text-sm">
+                                        <li>Automated email workflows, improving communication efficiency by 20%.</li>
+                                        <li>Identified and resolved critical SharePoint security vulnerabilities.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-indigo-500 rounded-full border-2 border-slate-900"></div>
+                    </div>
+
+                    <!-- Paychex -->
+                    <div class="relative">
+                        <div class="md:flex items-center md:space-x-8 flex-row-reverse">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pr-8">
+                                <div class="glass-card p-6 rounded-lg text-right md:text-left">
+                                    <p class="text-sm text-indigo-400 mb-1">Jun 2024 - Dec 2024</p>
+                                    <h3 class="text-xl font-bold text-white">Software Engineer</h3>
+                                    <p class="text-slate-400 font-medium mb-3">Paychex</p>
+                                    <ul class="list-disc list-inside text-slate-300 space-y-1 text-sm">
+                                        <li>Engineered Java & MongoDB backend services, improving efficiency by 20%.</li>
+                                        <li>Led regression testing to ensure 100% accuracy.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-indigo-500 rounded-full border-2 border-slate-900"></div>
+                    </div>
+                     <!-- RIT - System Engineer -->
+                    <div class="relative">
+                        <div class="md:flex items-center md:space-x-8">
+                            <div class="md:w-1/2"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                <div class="glass-card p-6 rounded-lg">
+                                    <p class="text-sm text-indigo-400 mb-1">Feb 2023 - Jun 2024</p>
+                                    <h3 class="text-xl font-bold text-white">System Engineer</h3>
+                                    <p class="text-slate-400 font-medium mb-3">Rochester Institute of Technology</p>
+                                    <ul class="list-disc list-inside text-slate-300 space-y-1 text-sm">
+                                        <li>Migrated data systems, boosting efficiency by 30%.</li>
+                                        <li>Developed scalable Python data pipelines, reducing processing time by 35%.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-indigo-500 rounded-full border-2 border-slate-900"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 fade-in-section">
+            <h2 class="text-4xl font-bold text-center text-white mb-16">Projects & Research</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Project 1: ASL Gestures -->
+                <div class="glass-card rounded-lg overflow-hidden flex flex-col">
+                    <img src="https://placehold.co/600x400/1e1b4b/93c5fd?text=ASL+Gesture+Tracking" alt="ASL Gesture Tracking Project" class="w-full h-56 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold text-white mb-2">Tracking ASL Gestures with Autoencoders</h3>
+                        <p class="text-slate-400 mb-4 flex-grow">Developed a Vector Quantized Variational Autoencoder (VQ-VAE) trained on over 900,000 frames to track and tokenize continuous American Sign Language movements, leveraging 2D & 3D pose point data.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">PyTorch</span>
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">VQ-VAE</span>
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">OpenPose</span>
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">MediaPipe</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold mt-auto">
+                            View Project <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Celebrity Doppelganger -->
+                <div class="glass-card rounded-lg overflow-hidden flex flex-col">
+                    <img src="https://placehold.co/600x400/1e1b4b/93c5fd?text=Celebrity+Doppelganger" alt="Celebrity Doppelganger Detection" class="w-full h-56 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold text-white mb-2">Celebrity Doppelganger Detection</h3>
+                        <p class="text-slate-400 mb-4 flex-grow">Managed a team to design and deploy a 100% serverless system for real-time celebrity doppelganger detection. Architected a Python backend and deployed a React front-end via Amplify.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">AWS Rekognition</span>
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">AWS Lambda</span>
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">DynamoDB</span>
+                            <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">Terraform</span>
+                             <span class="skill-badge bg-slate-700 text-slate-300 py-1 px-3 rounded-md text-xs">React</span>
+                        </div>
+                         <a href="#" class="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-semibold mt-auto">
+                            View Project <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 fade-in-section text-center">
+             <h2 class="text-4xl font-bold text-center text-white mb-4">Get In Touch</h2>
+             <p class="max-w-2xl mx-auto text-slate-400 mb-8">
+                I'm currently seeking new opportunities and am open to messages. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+             </p>
+             <a href="mailto:katyani.mehra.dev@gmail.com" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg inline-block">
+                Say Hello
+             </a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 mt-16">
+        <div class="container mx-auto px-6 py-6 text-center text-slate-500">
+            <p>&copy; 2024 Katyani Mehra. Designed with passion.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (const link of mobileMenuLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+
+        // Scroll-triggered animations
+        const sections = document.querySelectorAll('.fade-in-section');
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+    </script>
 </body>
 </html>
